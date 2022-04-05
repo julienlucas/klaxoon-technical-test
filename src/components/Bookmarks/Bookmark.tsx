@@ -1,10 +1,6 @@
 import { SBookmarkInfos, SBookmark } from './style';
 import showMediaBookmark from '../../libs/showMediaBookmark';
 
-interface Props {
-    bookmark: any;
-};
-
 const Bookmark: React.FC<Props> = ({ bookmark }) => {
     return (
         <SBookmark>
@@ -23,3 +19,7 @@ const Bookmark: React.FC<Props> = ({ bookmark }) => {
 };
 
 export default Bookmark;
+
+interface Props {
+    bookmark: any;
+};

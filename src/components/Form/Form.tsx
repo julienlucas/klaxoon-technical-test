@@ -23,8 +23,6 @@ function Form() {
                     url: ''
                 });
 
-                console.log(bookmark)
-
                 setBookmarks([...bookmarks, bookmark]);
             });
     };

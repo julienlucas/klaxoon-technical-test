@@ -1,3 +1,5 @@
+import styled from 'styled-components';
+
 const showMediaBookmark = (bookmark: any) => {
     if (bookmark?.url?.includes('youtube')) {
         return (
@@ -11,7 +13,7 @@ const showMediaBookmark = (bookmark: any) => {
 
     if (bookmark?.url?.includes('flickr')) {
         return (
-            <img src={bookmark?.thumbnail_url} alt="" title="" />
+            <SFlickrMedia mediaURL={bookmark?.media_url} />
         )
     };
 
@@ -19,3 +21,15 @@ const showMediaBookmark = (bookmark: any) => {
 };
 
 export default showMediaBookmark;
+
+interface FlickrMedia {
+    mediaURL: string
+};
+
+export const SFlickrMedia = styled.div<FlickrMedia>`
+    position: relative;
+    width: auto;
+    height: 280px;
+    background-image: url(${({ mediaURL }) => mediaURL });
+    background-size: cover;
+`
