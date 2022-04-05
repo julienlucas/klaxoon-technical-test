@@ -2,8 +2,8 @@
 
 ## Quick start
 
-Run `npm run start` to see the example app at `http://localhost:3000`.
-Run `npm run test` to run tests`.
+- Run `npm run start` to see the example app at `http://localhost:3000`.
+- Run `npm run test` to run tests`.
 
 ## Features
 
