@@ -1,33 +1,38 @@
-import React, { useState } from 'react';
+import { useState, useContext, ChangeEvent, FormEvent } from 'react';
+
 import getInfosEmbed from '../../libs/getInfosEmbed';
+
 import { SForm, SInput, SButton } from './style';
+
+import { BookmarksContextType } from '../../@types/bookmarks.d';
+import { BookmarksContext } from '../../context/bookmarksProvider';
 
 function Form() {
     const [form, setForm] = useState({
         url: '',
     });
-    const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+    const { bookmarks, setBookmarks } = useContext(BookmarksContext) as BookmarksContextType;
 
-    const onSubmit = (
-        e: {
-            preventDefault: () => void;
-        }) => {
+    const onSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        getInfosEmbed().then((res) => {
-            console.log(res)
-        });
+
+        getInfosEmbed(form.url)
+            .then((bookmark) => {
+                setForm({
+                    url: ''
+                });
+
+                console.log(bookmark)
+
+                setBookmarks([...bookmarks, bookmark]);
+            });
     };
 
-    const handleChange = (
-        e: {
-            preventDefault: () => void;
-            target: { name: string; value: string; };
-    }) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
         const { name, value } = e.target;
 
-        setIsButtonDisabled(false);
         setForm((prevState) => {
             const newState = { ...prevState, [name]: value };
 
@@ -36,18 +41,17 @@ function Form() {
     };
 
     return (
-        <SForm>
+        <SForm onSubmit={onSubmit}>
             <SInput
-                onChange={(e) => handleChange(e)}
+                onChange={handleChange}
                 name="url"
                 placeholder="Tapez votre url Viméo ou Flickr"
                 type="text"
                 value={form.url}
             />
             <SButton
-                disabled={isButtonDisabled}
-                onClick={(e) => onSubmit(e)}
-                type="button"
+                disabled={form.url === '' ? true : false}
+                type="submit"
             >
                 Ajouter en bookmark
             </SButton>

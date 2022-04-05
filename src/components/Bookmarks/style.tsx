@@ -9,7 +9,7 @@ export const SBookmarks = styled.div`
     width: 100%;
 `
 
-export const SBookmarkItem = styled.div`;
+export const SBookmark = styled.div`;
     position: relative;
     height: 440px;
     border-radius: 4px;
@@ -20,7 +20,7 @@ export const SBookmarkItem = styled.div`;
 
     iframe {
         width: 100%;
-        height: 300px;
+        height: 280px;
         border: 0;
     }
 `

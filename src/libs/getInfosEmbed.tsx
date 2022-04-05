@@ -1,10 +1,9 @@
-export default async function getInfoEmbed() {
+export default async function getInfoEmbed(url: string) {
     try {
-        const res = await fetch(
-            'http://noembed.com/embed?url=http%3A//www.youtube.com/watch%3Fv%3DbDOYN-6gdRE&callback=my_embed_function'
-        );
-        const fileInfos = await res.json();
-        console.log(fileInfos);
+        const res = await fetch(`https://noembed.com/embed?url=${url}`);
+        const embedInfos = await res.json();
+
+        return embedInfos;
     } catch (err) {
         console.error(err);
     }
