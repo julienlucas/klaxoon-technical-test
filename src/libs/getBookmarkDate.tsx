@@ -43,7 +43,7 @@ export const getBookmarkDate = (time: any) => {
     var i = 0,
         format;
 
-    while (format = time_formats[i++])
+    while (format = time_formats[i++]) // eslint-disable-line no-cond-assign
         if (seconds < format[0]) {
             if (typeof format[2] == 'string')
                 return format[list_choice];
