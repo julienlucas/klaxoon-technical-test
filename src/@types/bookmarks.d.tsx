@@ -7,6 +7,5 @@ export type BookmarksContextType = {
 
 export interface BookmarkProps {
     bookmark: any;
-    index: number;
     onRemoveBookmark: () => void;
 };

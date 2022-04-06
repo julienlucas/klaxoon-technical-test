@@ -20,10 +20,10 @@ const Bookmark: React.FC<Props> = ({ bookmark, index }) => {
     return (
         <SBookmark>
             {(bookmark?.url?.includes('https://www.flickr.com') || bookmark?.url?.includes('http://www.flickr.com')) &&
-                <BookmarkImage bookmark={bookmark} index={index} onRemoveBookmark={() => onRemoveBookmark(index)} />}
+                <BookmarkImage bookmark={bookmark} onRemoveBookmark={() => onRemoveBookmark(index)} />}
 
             {(bookmark?.url?.includes('https://vimeo.com') || bookmark?.url?.includes('http://vimeo.com')) &&
-                <BookmarkVideo bookmark={bookmark} index={index} onRemoveBookmark={() => onRemoveBookmark(index)} />}
+                <BookmarkVideo bookmark={bookmark} onRemoveBookmark={() => onRemoveBookmark(index)} />}
         </SBookmark>
     )
 };
