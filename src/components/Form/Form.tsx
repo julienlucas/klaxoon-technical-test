@@ -16,7 +16,6 @@ function Form() {
     const onSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-
         getInfosEmbed(form.url)
             .then((bookmark) => {
                 setForm({
@@ -41,6 +40,7 @@ function Form() {
     return (
         <SForm onSubmit={onSubmit}>
             <SInput
+                data-testid={'input'}
                 onChange={handleChange}
                 name="url"
                 placeholder="Tapez votre url Viméo ou Flickr"
@@ -48,6 +48,7 @@ function Form() {
                 value={form.url}
             />
             <SButton
+                data-testid={'submit'}
                 disabled={form.url === '' ? true : false}
                 type="submit"
             >

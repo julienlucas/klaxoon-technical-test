@@ -9,7 +9,7 @@ function Bookmarks() {
     const { bookmarks } = useContext(BookmarksContext) as BookmarksContextType;
 
     return (
-        <SBookmarks>
+        <SBookmarks data-testid={'bookmarks'}>
             {bookmarks?.map((bookmark, i) => <Bookmark key={i} bookmark={bookmark} index={i} />)}
         </SBookmarks>
     )

@@ -1,9 +1,9 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 
 import { BookmarksContextType } from '../../@types/bookmarks.d';
 import { BookmarksContext } from '../../context/bookmarksProvider';
 
-import { getTimeToFormat } from '../../libs/getTimeToFormat';
+import { getFormatedTime } from '../../libs/getFormatedTime';
 
 import { SBookmarkInfos, SBookmark, SButtonRemove, SFlickrMedia } from './style';
 
@@ -19,9 +19,6 @@ const Bookmark: React.FC<Props> = ({ bookmark, index }) => {
 
     const showMediaBookmark = (bookmark: any) => {
         if (bookmark?.url?.includes('vimeo')) {
-
-            console.log(bookmark)
-
             return (
                 <>
                     <iframe
@@ -35,8 +32,8 @@ const Bookmark: React.FC<Props> = ({ bookmark, index }) => {
                         <p>Auteur: {bookmark?.author_name}</p>
                         <p>Boomarké le : indisponible</p>
                         <p>Date de publication : indisponible</p>
-                        <p>{bookmark?.duration && getTimeToFormat(bookmark.duration)}</p>
-                        <SButtonRemove onClick={() => onRemoveBookmark(index)}>Retirer</SButtonRemove>
+                        <p>{bookmark?.duration && getFormatedTime(bookmark.duration)}</p>
+                        <SButtonRemove data-testid={`remove-button-${bookmark.url}`} onClick={() => onRemoveBookmark(index)}>Retirer</SButtonRemove>
                     </SBookmarkInfos>
                 </>
             )
@@ -53,7 +50,7 @@ const Bookmark: React.FC<Props> = ({ bookmark, index }) => {
                         <p>Boomarké le : indisponible</p>
                         <p>Date de publication : indisponible</p>
                         <p>{bookmark?.width}{bookmark?.width && ' x '}{bookmark?.height}</p>
-                        <SButtonRemove onClick={() => onRemoveBookmark(index)}>Retirer</SButtonRemove>
+                        <SButtonRemove data-testid={`remove-button-${bookmark.url}`} onClick={() => onRemoveBookmark(index)}>Retirer</SButtonRemove>
                     </SBookmarkInfos>
                 </>
             )
