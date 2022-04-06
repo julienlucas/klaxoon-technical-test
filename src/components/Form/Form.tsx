@@ -13,20 +13,17 @@ function Form() {
     });
     const { bookmarks, setBookmarks } = useContext(BookmarksContext) as BookmarksContextType;
 
-    const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+    const onSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
         e.preventDefault();
 
-        getInfosEmbed(form.url)
-            .then((bookmark) => {
-                setForm({
-                    url: ''
-                });
-
-                setBookmarks([...bookmarks, bookmark]);
-            });
+        const newBookmark = await getInfosEmbed(form.url);
+        setBookmarks([...bookmarks, newBookmark]);
+        setForm({
+            url: ''
+        });
     };
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
         e.preventDefault();
         const { name, value } = e.target;
 
