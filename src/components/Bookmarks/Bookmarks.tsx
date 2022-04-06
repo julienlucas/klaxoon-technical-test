@@ -10,7 +10,7 @@ function Bookmarks() {
 
     return (
         <SBookmarks data-testid={'bookmarks'}>
-            {bookmarks?.map((bookmark, i) => <Bookmark key={i} bookmark={bookmark} index={i} />)}
+            {bookmarks?.map((bookmark, index) => <Bookmark key={index} bookmark={bookmark} index={index} />)}
         </SBookmarks>
     )
 };

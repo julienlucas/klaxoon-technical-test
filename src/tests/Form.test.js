@@ -34,7 +34,7 @@ test('Should show the bookmark added', async () => {
 
     await waitFor(() => expect(getByTestId('bookmarks')).toHaveTextContent(urlTest1));
 
-    await waitFor(() => new Promise((r) => setTimeout(r, 500))); // Small delay to not block the reponse from noembed API server
+    await waitFor(() => new Promise((r) => setTimeout(r, 500))); // Small delay to not bypass the delay between two request on noembed API server
     fireEvent.change(getByTestId('input'), { target: { value: urlTest2 } });
     await waitFor(() => fireEvent.click(getByTestId('submit')));
 
@@ -51,7 +51,7 @@ test('Should remove the right bookmark on click remove-button', async () => {
 
     fireEvent.change(getByTestId('input'), { target: { value: urlTest1 } });
     await waitFor(() => fireEvent.click(getByTestId('submit')));
-    await waitFor(() => new Promise((r) => setTimeout(r, 500))); // Small delay to not block the reponse from noembed API server
+    await waitFor(() => new Promise((r) => setTimeout(r, 500))); // Small delay to not bypass the delay between two request on noembed API server
     fireEvent.change(getByTestId('input'), { target: { value: urlTest2 } });
     await waitFor(() => fireEvent.click(getByTestId('submit')));
 

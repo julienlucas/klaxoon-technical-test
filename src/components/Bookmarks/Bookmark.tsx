@@ -1,11 +1,11 @@
 import { useContext } from 'react';
 
+import { BookmarkVideo, BookmarkImage } from './';
+
 import { BookmarksContextType } from '../../@types/bookmarks.d';
 import { BookmarksContext } from '../../context/bookmarksProvider';
 
-import { getFormatedTime } from '../../libs/getFormatedTime';
-
-import { SBookmarkInfos, SBookmark, SButtonRemove, SFlickrMedia } from './style';
+import { SBookmark } from './style';
 
 const Bookmark: React.FC<Props> = ({ bookmark, index }) => {
     const { bookmarks, setBookmarks } = useContext(BookmarksContext) as BookmarksContextType;
@@ -17,51 +17,13 @@ const Bookmark: React.FC<Props> = ({ bookmark, index }) => {
         setBookmarks(newBookmarks);
     };
 
-    const showMediaBookmark = (bookmark: any) => {
-        if (bookmark?.url?.includes('vimeo')) {
-            return (
-                <>
-                    <iframe
-                        src={`https://player.vimeo.com/video/${bookmark?.video_id}`}
-                        title={bookmark?.title}
-                        allow="fullscreen"
-                    />
-                    <SBookmarkInfos>
-                        <p><em>{bookmark?.url}</em></p>
-                        <h3>{bookmark?.title}</h3>
-                        <p>Auteur: {bookmark?.author_name}</p>
-                        <p>Boomarké le : indisponible</p>
-                        <p>Date de publication : indisponible</p>
-                        <p>{bookmark?.duration && getFormatedTime(bookmark.duration)}</p>
-                        <SButtonRemove data-testid={`remove-button-${bookmark.url}`} onClick={() => onRemoveBookmark(index)}>Retirer</SButtonRemove>
-                    </SBookmarkInfos>
-                </>
-            )
-        };
-
-        if (bookmark?.url?.includes('flickr')) {
-            return (
-                <>
-                    <SFlickrMedia mediaURL={bookmark?.media_url} />
-                    <SBookmarkInfos>
-                        <p><em>{bookmark?.url}</em></p>
-                        <h3>{bookmark?.title}</h3>
-                        <p>{bookmark?.author_name}</p>
-                        <p>Boomarké le : indisponible</p>
-                        <p>Date de publication : indisponible</p>
-                        <p>{bookmark?.width}{bookmark?.width && ' x '}{bookmark?.height}</p>
-                        <SButtonRemove data-testid={`remove-button-${bookmark.url}`} onClick={() => onRemoveBookmark(index)}>Retirer</SButtonRemove>
-                    </SBookmarkInfos>
-                </>
-            )
-        };
-
-        return <></>
-    };
-
     return (
         <SBookmark>
-            {bookmark.url && showMediaBookmark(bookmark)}
+            {(bookmark?.url?.includes('https://www.flickr.com') || bookmark?.url?.includes('http://www.flickr.com')) &&
+                <BookmarkImage bookmark={bookmark} index={index} onRemoveBookmark={() => onRemoveBookmark(index)} />}
+
+            {(bookmark?.url?.includes('https://vimeo.com') || bookmark?.url?.includes('http://vimeo.com')) &&
+                <BookmarkVideo bookmark={bookmark} index={index} onRemoveBookmark={() => onRemoveBookmark(index)} />}
         </SBookmark>
     )
 };
