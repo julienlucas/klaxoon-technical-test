@@ -21,48 +21,50 @@ afterAll(() => {
 const urlTest1 = 'https://www.flickr.com/photos/feuilllu/45771361701/';
 const urlTest2 = 'https://vimeo.com/565486457';
 
-test('Should show the bookmark added', async () => {
-    const { getByTestId } = render(
-        <BookmarksProvider value={[]}>
-            <App />
-        </BookmarksProvider>
-    );
+describe('Form test', () => {
+    test('Should show the bookmark added', async () => {
+        const { getByTestId } = render(
+            <BookmarksProvider value={[]}>
+                <App />
+            </BookmarksProvider>
+        );
 
-    fireEvent.change(getByTestId('input'), { target: { value: urlTest1 } });
-    expect(getByTestId('input').value).toBe(urlTest1);
-    await waitFor(() => fireEvent.click(getByTestId('submit')));
+        fireEvent.change(getByTestId('input'), { target: { value: urlTest1 } });
+        expect(getByTestId('input').value).toBe(urlTest1);
+        await waitFor(() => fireEvent.click(getByTestId('submit')));
 
-    await waitFor(() => expect(getByTestId('bookmarks')).toHaveTextContent(urlTest1));
+        await waitFor(() => expect(getByTestId('bookmarks')).toHaveTextContent(urlTest1));
 
-    await waitFor(() => new Promise((r) => setTimeout(r, 500))); // Small delay to not bypass the delay between two request on noembed API server
-    fireEvent.change(getByTestId('input'), { target: { value: urlTest2 } });
-    await waitFor(() => fireEvent.click(getByTestId('submit')));
+        await waitFor(() => new Promise((r) => setTimeout(r, 500))); // Small delay to not bypass the delay between two request on noembed API server
+        fireEvent.change(getByTestId('input'), { target: { value: urlTest2 } });
+        await waitFor(() => fireEvent.click(getByTestId('submit')));
 
-    await waitFor(() => expect(getByTestId('bookmarks')).toHaveTextContent(urlTest1));
-    await waitFor(() => expect(getByTestId('bookmarks')).toHaveTextContent(urlTest2));
-});
+        await waitFor(() => expect(getByTestId('bookmarks')).toHaveTextContent(urlTest1));
+        await waitFor(() => expect(getByTestId('bookmarks')).toHaveTextContent(urlTest2));
+    });
 
-test('Should remove the right bookmark on click remove-button', async () => {
-    const { getByTestId } = render(
-        <BookmarksProvider>
-            <App />
-        </BookmarksProvider>
-    );
+    test('Should remove the right bookmark on click remove-button', async () => {
+        const { getByTestId } = render(
+            <BookmarksProvider>
+                <App />
+            </BookmarksProvider>
+        );
 
-    fireEvent.change(getByTestId('input'), { target: { value: urlTest1 } });
-    await waitFor(() => fireEvent.click(getByTestId('submit')));
-    await waitFor(() => new Promise((r) => setTimeout(r, 500))); // Small delay to not bypass the delay between two request on noembed API server
-    fireEvent.change(getByTestId('input'), { target: { value: urlTest2 } });
-    await waitFor(() => fireEvent.click(getByTestId('submit')));
+        fireEvent.change(getByTestId('input'), { target: { value: urlTest1 } });
+        await waitFor(() => fireEvent.click(getByTestId('submit')));
+        await waitFor(() => new Promise((r) => setTimeout(r, 500))); // Small delay to not bypass the delay between two request on noembed API server
+        fireEvent.change(getByTestId('input'), { target: { value: urlTest2 } });
+        await waitFor(() => fireEvent.click(getByTestId('submit')));
 
-    await waitFor(() => expect(getByTestId('bookmarks')).toHaveTextContent(urlTest1));
-    await waitFor(() => expect(getByTestId('bookmarks')).toHaveTextContent(urlTest2));
+        await waitFor(() => expect(getByTestId('bookmarks')).toHaveTextContent(urlTest1));
+        await waitFor(() => expect(getByTestId('bookmarks')).toHaveTextContent(urlTest2));
 
-    await waitFor(() => fireEvent.click(getByTestId(`remove-button-${urlTest1}`)));
-    await waitFor(() => expect(getByTestId('bookmarks')).not.toHaveTextContent(urlTest1));
-    await waitFor(() => expect(getByTestId('bookmarks')).toHaveTextContent(urlTest2));
+        await waitFor(() => fireEvent.click(getByTestId(`remove-button-${urlTest1}`)));
+        await waitFor(() => expect(getByTestId('bookmarks')).not.toHaveTextContent(urlTest1));
+        await waitFor(() => expect(getByTestId('bookmarks')).toHaveTextContent(urlTest2));
 
-    await waitFor(() => fireEvent.click(getByTestId(`remove-button-${urlTest2}`)));
-    await waitFor(() => expect(getByTestId('bookmarks')).not.toHaveTextContent(urlTest1));
-    await waitFor(() => expect(getByTestId('bookmarks')).not.toHaveTextContent(urlTest2));
+        await waitFor(() => fireEvent.click(getByTestId(`remove-button-${urlTest2}`)));
+        await waitFor(() => expect(getByTestId('bookmarks')).not.toHaveTextContent(urlTest1));
+        await waitFor(() => expect(getByTestId('bookmarks')).not.toHaveTextContent(urlTest2));
+    });
 });
