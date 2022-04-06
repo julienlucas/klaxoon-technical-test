@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { SBookmarks } from './style';
 import Bookmark from './Bookmark';
 
@@ -10,7 +10,7 @@ function Bookmarks() {
 
     return (
         <SBookmarks>
-            {bookmarks?.map((bookmark, i) => <Bookmark key={i} bookmark={bookmark} />)}
+            {bookmarks?.map((bookmark, i) => <Bookmark key={i} bookmark={bookmark} index={i} />)}
         </SBookmarks>
     )
 };

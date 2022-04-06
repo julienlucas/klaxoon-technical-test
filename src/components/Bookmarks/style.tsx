@@ -4,14 +4,14 @@ import { theme } from '../../theme/theme';
 export const SBookmarks = styled.div`
     margin-top: 20px;
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 33% 33% 33%;
     grid-gap: 20px;
     width: 100%;
 `
 
 export const SBookmark = styled.div`;
     position: relative;
-    height: 440px;
+    height: 400px;
     border-radius: 4px;
     border: 1px solid ${theme.lightGrey};
     font-size: 30px;
@@ -20,7 +20,7 @@ export const SBookmark = styled.div`;
 
     iframe {
         width: 100%;
-        height: 280px;
+        height: 220px;
         border: 0;
     }
 `
@@ -42,3 +42,41 @@ export const SBookmarkInfos = styled.div`
         color: ${theme.black}
     }
 `
+
+export const SButtonRemove = styled.button`;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+    height: 36px;
+    color: ${theme.black};
+    background: ${theme.lightGrey};
+    border: 0;
+    outline: none;
+    user-select: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+
+    &:hover {
+       opacity: .7;
+       transition: opacity .2s;
+    }
+`
+
+export const SFlickrMedia = styled.div<FlickrMedia>`
+    position: relative;
+    width: auto;
+    height: 220px;
+    background-image: url(${({ mediaURL }) => mediaURL});
+    background-size: cover;
+`
+
+interface FlickrMedia {
+    mediaURL: string
+};

@@ -35,4 +35,9 @@ export const SButton = styled.button`
    border-radius: 4px;
    font-size: 14px;
    cursor: pointer;
+
+   &:hover {
+      opacity: .7;
+      transition: opacity .2s;
+   }
 `
