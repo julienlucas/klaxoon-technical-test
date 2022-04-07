@@ -1,4 +1,6 @@
-export type Bookmark = {};
+export interface Bookmark {
+    [key: string]: any;
+};
 
 export type BookmarksContextType = {
     bookmarks: Bookmark[];
@@ -6,6 +8,6 @@ export type BookmarksContextType = {
 };
 
 export interface BookmarkProps {
-    bookmark: any;
+    bookmark: Bookmark;
     onRemoveBookmark: () => void;
 };
