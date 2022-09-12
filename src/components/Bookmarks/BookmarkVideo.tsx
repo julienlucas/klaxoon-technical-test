@@ -1,4 +1,4 @@
-import { BookmarkProps } from '../../@types/bookmarks.d';
+import { BookmarkProps } from '../../@types/bookmarks.type';
 import { getBookmarkDate } from '../../libs/getBookmarkDate';
 import { getFormatedTime } from '../../libs/getFormatedTime';
 import { SBookmarkInfos, SButtonRemove } from './style';
@@ -12,13 +12,17 @@ export const BookmarkVideo: React.FC<BookmarkProps> = ({ bookmark, onRemoveBookm
                 allow="fullscreen"
             />
             <SBookmarkInfos>
-                <p><em>{bookmark?.url}</em></p>
+                <p><em>{bookmark?.url.substring(0,8)}</em></p>
                 <h3>{bookmark?.title}</h3>
                 <p>Auteur: {bookmark?.author_name}</p>
                 <p>Boomarké le : {getBookmarkDate(new Date(Date.now()))}</p>
-                <p>Date de publication : indisponible</p>
                 <p>{bookmark?.duration && getFormatedTime(bookmark.duration)}</p>
-                <SButtonRemove data-testid={`remove-button-${bookmark.url}`} onClick={onRemoveBookmark}>Retirer</SButtonRemove>
+                <SButtonRemove
+                    data-testid={`remove-button-${bookmark.url}`}
+                    onClick={onRemoveBookmark}
+                >
+                    Retirer
+                </SButtonRemove>
             </SBookmarkInfos>
         </>
     )

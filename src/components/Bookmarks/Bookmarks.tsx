@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { SBookmarks } from './style';
 import Bookmark from './Bookmark';
 
-import { BookmarksContextType } from '../../@types/bookmarks.d';
+import { BookmarksContextType } from '../../@types/bookmarks.type';
 import { BookmarksContext } from '../../context/bookmarksProvider';
 
 function Bookmarks() {

@@ -12,7 +12,7 @@ export const SBookmarks = styled.div`
 export const SBookmark = styled.div`;
     position: relative;
     height: 400px;
-    border-radius: 4px;
+    border-radius: 16px;
     border: 1px solid ${theme.lightGrey};
     font-size: 30px;
     text-align: center;
@@ -49,23 +49,24 @@ export const SButtonRemove = styled.button`;
     bottom: 20px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     padding: 0 10px;
     height: 36px;
-    color: ${theme.black};
+    line-height: 36px;
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
+    color: ${theme.darkGrey};
     background: ${theme.lightGrey};
     border: 0;
     outline: none;
     user-select: none;
-    border-radius: 4px;
+    border-radius: 16px;
     font-size: 14px;
     cursor: pointer;
+    transition: opacity .2s;
 
     &:hover {
        opacity: .7;
-       transition: opacity .2s;
     }
 `
 
@@ -77,6 +78,6 @@ export const SFlickrMedia = styled.div<FlickrMedia>`
     background-size: cover;
 `
 
-interface FlickrMedia {
+type FlickrMedia = {
     mediaURL: string
 };

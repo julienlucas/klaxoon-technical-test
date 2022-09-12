@@ -2,7 +2,7 @@ import { useContext } from 'react';
 
 import { BookmarkVideo, BookmarkImage } from './';
 
-import { BookmarksContextType } from '../../@types/bookmarks.d';
+import { BookmarksContextType } from '../../@types/bookmarks.type';
 import { BookmarksContext } from '../../context/bookmarksProvider';
 
 import { SBookmark } from './style';

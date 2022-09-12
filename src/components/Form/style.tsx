@@ -14,7 +14,7 @@ export const SInput = styled.input`
    background: ${theme.lightGrey};
    color: ${theme.darkGrey};
    font-size: 14px;
-   border-radius: 4px;
+   border-radius: 20px;
    border: 0;
    outline: none;
 `
@@ -32,12 +32,12 @@ export const SButton = styled.button`
    border: 0;
    outline: none;
    user-select: none;
-   border-radius: 4px;
+   border-radius: 28px;
    font-size: 14px;
    cursor: pointer;
+   transition: opacity .2s;
 
    &:hover {
       opacity: .7;
-      transition: opacity .2s;
    }
 `

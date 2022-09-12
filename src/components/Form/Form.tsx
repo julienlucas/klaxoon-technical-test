@@ -4,7 +4,7 @@ import getInfosEmbed from '../../libs/getInfosEmbed';
 
 import { SForm, SInput, SButton } from './style';
 
-import { BookmarksContextType } from '../../@types/bookmarks.d';
+import { BookmarksContextType } from '../../@types/bookmarks.type';
 import { BookmarksContext } from '../../context/bookmarksProvider';
 
 function Form() {
@@ -40,13 +40,13 @@ function Form() {
                 data-testid={'input'}
                 onChange={handleChange}
                 name="url"
-                placeholder="Tapez votre url Viméo ou Flickr"
+                placeholder="Ajoutez votre url Viméo ou Flickr"
                 type="text"
                 value={form.url}
             />
             <SButton
                 data-testid={'submit'}
-                disabled={form.url === '' ? true : false}
+                disabled={!form.url}
                 type="submit"
             >
                 Ajouter en bookmark
